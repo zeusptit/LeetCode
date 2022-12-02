@@ -1,28 +1,22 @@
-#include <bits/stdc++.h>
-using namespace std;
+// The API isBadVersion is defined for you.
+// bool isBadVersion(int version);
 
-#define quick() ios_base::sync_with_stdio(false); cin.tie(0);
-#define pb push_back
-using ll = long long;
-int mod = 1e9 + 7;
-
-int main(){
-    quick();
-    string ransomNote,magazine;
-    cin >> ransomNote >> magazine;
-    map<char,int>mp;
-    int  i = ransomNote.length();
-    for(auto it : ransomNote)mp[it]++;
-    for(char x : magazine)
-    {
-        if(mp.count(x))
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        long res = INT_MAX, l = 0, r = n;
+        while(l <= r)
         {
-            i--;
-            mp[x]--;
+            long m = (l + r)/2;
+            if(isBadVersion(m))
+            {
+                if(res > m)
+                    res = m;
+                r = m - 1;
+            }else{
+                l = m + 1;
+            }
         }
+        return res;
     }
-    cout << i << endl;
-}
-/*
-
-*/
+};
