@@ -14,11 +14,10 @@ public:
         }
         return st.size() == 0 && k == s.size() / 2;
     }
-    vector<string> ans; int cnt = 0;
+    vector<string> ans; 
     void Try(int k, string s){
         for(int j = 40; j <= 41; j++){
             s += (char)j;
-            if(j == 40)cnt++;
             if(s.size() == k){
                 if(check(s))
                     ans.push_back(s);
